@@ -5,13 +5,55 @@
   
   <nav class="sidebar-menu">
     @for (item of menuItems; track item.label) {
-      <a 
-        [class.active]="item.active" 
-        class="menu-item"
-      >
-        <span class="menu-icon">{{ item.icon }}</span>
-        <span class="menu-label">{{ item.label }}</span>
-      </a>
+      <div class="menu-item-wrapper">
+        @if (item.subItems) {
+          <!-- Menu item with submenu -->
+          <a 
+            [class.active]="item.active" 
+            class="menu-item"
+            (click)="toggleSubmenu(item)"
+            [attr.data-bs-toggle]="'collapse'"
+            [attr.data-bs-target]="'#collapse-' + item.label"
+            [attr.aria-expanded]="!item.collapsed"
+            [attr.aria-controls]="'collapse-' + item.label"
+          >
+            <span class="menu-icon">{{ item.icon }}</span>
+            <span class="menu-label">{{ item.label }}</span>
+            <span class="collapse-icon">
+              @if (item.collapsed) {
+                ▼
+              } @else {
+                ▲
+              }
+            </span>
+          </a>
+          <!-- Collapsible submenu -->
+          <div 
+            class="collapse submenu"
+            [class.show]="!item.collapsed"
+            [id]="'collapse-' + item.label"
+          >
+            @for (subItem of item.subItems; track subItem.label) {
+              <a 
+                [class.active]="subItem.active"
+                class="submenu-item"
+              >
+                <span class="menu-icon">{{ subItem.icon }}</span>
+                <span class="menu-label">{{ subItem.label }}</span>
+              </a>
+            }
+          </div>
+        } @else {
+          <!-- Regular menu item without submenu -->
+          <a 
+            [class.active]="item.active" 
+            class="menu-item"
+          >
+            <span class="menu-icon">{{ item.icon }}</span>
+            <span class="menu-label">{{ item.label }}</span>
+          </a>
+        }
+      </div>
     }
   </nav>
 </aside>
