@@ -1,0 +1,56 @@
+<div class="login-container">
+  <div class="login-card">
+    <div class="login-header">
+      <h1>Admin UI Dashboard</h1>
+      <p>Please login to continue</p>
+    </div>
+    
+    <form (ngSubmit)="onSubmit()" class="login-form">
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input
+          type="text"
+          id="username"
+          name="username"
+          [(ngModel)]="username"
+          placeholder="Enter username"
+          required
+          [disabled]="loading"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          [(ngModel)]="password"
+          placeholder="Enter password"
+          required
+          [disabled]="loading"
+        />
+      </div>
+
+      @if (errorMessage) {
+        <div class="error-message">
+          {{ errorMessage }}
+        </div>
+      }
+
+      <button type="submit" class="login-button" [disabled]="loading">
+        @if (loading) {
+          <span>Logging in...</span>
+        } @else {
+          <span>Login</span>
+        }
+      </button>
+
+      <div class="demo-credentials">
+        <p><strong>Demo Credentials:</strong></p>
+        <p>Admin: <code>admin / admin123</code></p>
+        <p>User: <code>user / user123</code></p>
+      </div>
+    </form>
+  </div>
+</div>

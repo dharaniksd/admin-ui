@@ -1,0 +1,29 @@
+<div class="notifications-section">
+  <div class="notifications-header">
+    <h2>Notifications</h2>
+    @if (getUnreadCount() > 0) {
+      <span class="badge">{{ getUnreadCount() }} new</span>
+    }
+  </div>
+  
+  <div class="notifications-list">
+    @for (notification of notifications; track notification.id) {
+      <div 
+        class="notification-item"
+        [class.unread]="!notification.read"
+        [class.success]="notification.type === 'success'"
+        [class.warning]="notification.type === 'warning'"
+        [class.error]="notification.type === 'error'"
+        [class.info]="notification.type === 'info'"
+        (click)="markAsRead(notification)"
+      >
+        <div class="notification-icon">{{ notification.icon }}</div>
+        <div class="notification-content">
+          <h4>{{ notification.title }}</h4>
+          <p>{{ notification.message }}</p>
+          <span class="notification-time">{{ notification.time }}</span>
+        </div>
+      </div>
+    }
+  </div>
+</div>

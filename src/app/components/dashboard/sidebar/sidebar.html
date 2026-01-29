@@ -1,0 +1,17 @@
+<aside class="sidebar">
+  <div class="sidebar-header">
+    <h1>Admin UI</h1>
+  </div>
+  
+  <nav class="sidebar-menu">
+    @for (item of menuItems; track item.label) {
+      <a 
+        [class.active]="item.active" 
+        class="menu-item"
+      >
+        <span class="menu-icon">{{ item.icon }}</span>
+        <span class="menu-label">{{ item.label }}</span>
+      </a>
+    }
+  </nav>
+</aside>

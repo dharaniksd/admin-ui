@@ -1,0 +1,28 @@
+.sales-graph-section {
+  margin-bottom: 30px;
+
+  h2 {
+    color: #333;
+    font-size: 22px;
+    margin-bottom: 20px;
+  }
+
+  .graph-container {
+    background: white;
+    border-radius: 10px;
+    padding: 25px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+    .chart-wrapper {
+      position: relative;
+      height: 400px;
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .graph-container .chart-wrapper {
+      height: 300px;
+    }
+  }
+}
