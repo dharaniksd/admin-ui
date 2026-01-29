@@ -1,59 +1,132 @@
-# AdminUiApp
+# Admin UI Dashboard
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.1.2.
+A modern Angular 21 admin dashboard application with authentication, performance monitoring, sales analytics, and real-time notifications.
 
-## Development server
+## Features
 
-To start a local development server, run:
+- **🔐 Authentication System**: Login functionality with dummy JSON file (JWT-ready architecture)
+- **📊 Dashboard**: Comprehensive admin interface with performance metrics
+- **📈 Sales & Loss Analysis**: Interactive charts powered by Chart.js
+- **🔔 Notifications**: Real-time notification system with multiple alert types
+- **👤 User Management**: Role-based authentication (Admin/User roles)
+- **📱 Responsive Design**: Mobile-friendly interface
 
+## Demo Credentials
+
+- **Admin User**: `admin` / `admin123`
+- **Regular User**: `user` / `user123`
+
+## Tech Stack
+
+- Angular 21
+- TypeScript 5.9
+- Chart.js & ng2-charts for data visualization
+- SCSS for styling
+- Vite for development server
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js v20 or higher
+- npm v10 or higher
+
+### Installation
+
+1. Clone the repository:
 ```bash
-ng serve
+git clone https://github.com/dharaniksd/admin-ui.git
+cd admin-ui
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
+2. Install dependencies:
 ```bash
-ng generate component component-name
+npm install
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
+3. Start the development server:
 ```bash
-ng generate --help
+npm start
 ```
 
-## Building
+4. Open your browser and navigate to `http://localhost:4200`
 
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+### Build for Production
 
 ```bash
-ng test
+npm run build
 ```
 
-## Running end-to-end tests
+The production-ready files will be in the `dist/admin-ui-app` directory.
 
-For end-to-end (e2e) testing, run:
+## Project Structure
+
+```
+src/
+├── app/
+│   ├── components/
+│   │   ├── login/              # Login page
+│   │   └── dashboard/          # Dashboard components
+│   │       ├── header/         # Top navigation bar
+│   │       ├── sidebar/        # Side navigation menu
+│   │       ├── monitoring/     # Performance metrics cards
+│   │       ├── sales-graph/    # Sales & Loss chart
+│   │       └── notifications/  # Notification panel
+│   ├── guards/
+│   │   └── auth-guard.ts       # Route protection
+│   ├── services/
+│   │   └── auth.ts             # Authentication service
+│   └── app.routes.ts           # Application routing
+├── public/
+│   └── data/
+│       └── users.json          # Dummy user data
+└── styles.scss                 # Global styles
+```
+
+## Features in Detail
+
+### Authentication
+- Simple login with username/password
+- Session management using localStorage
+- Route guards to protect dashboard access
+- JWT-ready architecture for future backend integration
+
+### Dashboard Components
+- **Performance Monitoring**: Real-time metrics for revenue, users, orders, and conversion rate
+- **Sales Analysis**: Interactive line chart showing sales and loss trends over 12 months
+- **Notifications**: Categorized alerts (success, warning, error, info) with read/unread status
+
+### Future Enhancements (JWT Implementation)
+The authentication system is designed to easily integrate with JWT:
+1. Update `AuthService` to call your backend API
+2. Store JWT tokens instead of user objects
+3. Add token refresh logic
+4. Implement HTTP interceptor for adding tokens to requests
+
+## Screenshots
+
+### Login Page
+![Login Page](https://github.com/user-attachments/assets/a102bd9a-5655-4e93-a2d8-9f305b189ff9)
+
+### Dashboard
+![Dashboard](https://github.com/user-attachments/assets/59a86510-7778-4670-b5a5-4e64571c5ee0)
+
+## Development Commands
 
 ```bash
-ng e2e
+# Start development server
+npm start
+
+# Build for production
+npm run build
+
+# Run tests
+npm test
+
+# Run Angular CLI commands
+npx ng [command]
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+## License
 
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+MIT License

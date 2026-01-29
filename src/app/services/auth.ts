@@ -32,7 +32,7 @@ export class AuthService {
   async login(username: string, password: string): Promise<boolean> {
     try {
       // Load users from dummy JSON file
-      const response = await fetch('/assets/data/users.json');
+      const response = await fetch('/data/users.json');
       const data = await response.json();
       
       const user = data.users.find(
