@@ -1,0 +1,117 @@
+.notifications-section {
+  .notifications-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+
+    h2 {
+      color: #333;
+      font-size: 22px;
+      margin: 0;
+    }
+
+    .badge {
+      background-color: #667eea;
+      color: white;
+      padding: 5px 15px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 500;
+    }
+  }
+
+  .notifications-list {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+    .notification-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 15px;
+      padding: 20px;
+      border-bottom: 1px solid #f0f0f0;
+      cursor: pointer;
+      transition: background-color 0.3s;
+
+      &:last-child {
+        border-bottom: none;
+      }
+
+      &:hover {
+        background-color: #f8f9fa;
+      }
+
+      &.unread {
+        background-color: #f0f4ff;
+      }
+
+      .notification-icon {
+        font-size: 24px;
+        line-height: 1;
+        padding: 8px;
+        border-radius: 50%;
+        background-color: #f5f5f5;
+      }
+
+      &.success .notification-icon {
+        background-color: #e8f5e9;
+      }
+
+      &.warning .notification-icon {
+        background-color: #fff3e0;
+      }
+
+      &.error .notification-icon {
+        background-color: #ffebee;
+      }
+
+      &.info .notification-icon {
+        background-color: #e3f2fd;
+      }
+
+      .notification-content {
+        flex: 1;
+
+        h4 {
+          margin: 0 0 5px 0;
+          color: #333;
+          font-size: 16px;
+          font-weight: 500;
+        }
+
+        p {
+          margin: 0 0 8px 0;
+          color: #666;
+          font-size: 14px;
+          line-height: 1.5;
+        }
+
+        .notification-time {
+          color: #999;
+          font-size: 12px;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    .notifications-list .notification-item {
+      padding: 15px;
+
+      .notification-icon {
+        font-size: 20px;
+      }
+
+      .notification-content h4 {
+        font-size: 14px;
+      }
+
+      .notification-content p {
+        font-size: 13px;
+      }
+    }
+  }
+}
