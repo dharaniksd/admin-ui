@@ -1,11 +1,19 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+/**
+ * Interface defining the structure of a menu item
+ */
 interface MenuItem {
+  /** Emoji icon to display */
   icon: string;
+  /** Display label for the menu item */
   label: string;
+  /** Whether this menu item is currently active */
   active: boolean;
+  /** Optional array of sub-menu items */
   subItems?: MenuItem[];
+  /** Whether the submenu is collapsed (only applicable if subItems exist) */
   collapsed?: boolean;
 }
 
@@ -54,6 +62,10 @@ export class SidebarComponent {
     },
   ];
 
+  /**
+   * Toggles the collapsed state of a menu item with submenus
+   * @param item The menu item to toggle
+   */
   toggleSubmenu(item: MenuItem): void {
     if (item.subItems) {
       item.collapsed = !item.collapsed;

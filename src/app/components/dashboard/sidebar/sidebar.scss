@@ -65,13 +65,16 @@
         }
       }
 
-      // Submenu styles
-      .submenu {
+      // Submenu dropdown styles
+      // Using CSS-based animation instead of Bootstrap's JavaScript collapse component
+      .submenu-dropdown {
         background-color: rgba(0, 0, 0, 0.2);
         overflow: hidden;
         max-height: 0;
         transition: max-height 0.3s ease-in-out;
         
+        // Max-height set to 500px to accommodate up to ~10 submenu items
+        // Adjust if you expect more submenu items
         &.show {
           max-height: 500px;
         }

@@ -31,7 +31,7 @@
           </a>
           <!-- Collapsible submenu -->
           <div 
-            class="collapse submenu"
+            class="submenu-dropdown"
             [class.show]="!item.collapsed"
             [id]="'collapse-' + idx"
           >
@@ -51,6 +51,7 @@
           <a 
             [class.active]="item.active" 
             class="menu-item"
+            role="button"
             tabindex="0"
           >
             <span class="menu-icon">{{ item.icon }}</span>
