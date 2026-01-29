@@ -68,6 +68,13 @@
       // Submenu styles
       .submenu {
         background-color: rgba(0, 0, 0, 0.2);
+        overflow: hidden;
+        max-height: 0;
+        transition: max-height 0.3s ease-in-out;
+        
+        &.show {
+          max-height: 500px;
+        }
         
         .submenu-item {
           display: flex;

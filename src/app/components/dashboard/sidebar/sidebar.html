@@ -4,7 +4,7 @@
   </div>
   
   <nav class="sidebar-menu">
-    @for (item of menuItems; track item.label) {
+    @for (item of menuItems; track item.label; let idx = $index) {
       <div class="menu-item-wrapper">
         @if (item.subItems) {
           <!-- Menu item with submenu -->
@@ -12,14 +12,16 @@
             [class.active]="item.active" 
             class="menu-item"
             (click)="toggleSubmenu(item)"
-            [attr.data-bs-toggle]="'collapse'"
-            [attr.data-bs-target]="'#collapse-' + item.label"
             [attr.aria-expanded]="!item.collapsed"
-            [attr.aria-controls]="'collapse-' + item.label"
+            [attr.aria-controls]="'collapse-' + idx"
+            role="button"
+            tabindex="0"
+            (keydown.enter)="toggleSubmenu(item)"
+            (keydown.space)="$event.preventDefault(); toggleSubmenu(item)"
           >
             <span class="menu-icon">{{ item.icon }}</span>
             <span class="menu-label">{{ item.label }}</span>
-            <span class="collapse-icon">
+            <span class="collapse-icon" aria-hidden="true">
               @if (item.collapsed) {
                 ▼
               } @else {
@@ -31,12 +33,13 @@
           <div 
             class="collapse submenu"
             [class.show]="!item.collapsed"
-            [id]="'collapse-' + item.label"
+            [id]="'collapse-' + idx"
           >
             @for (subItem of item.subItems; track subItem.label) {
               <a 
                 [class.active]="subItem.active"
                 class="submenu-item"
+                tabindex="0"
               >
                 <span class="menu-icon">{{ subItem.icon }}</span>
                 <span class="menu-label">{{ subItem.label }}</span>
@@ -48,6 +51,7 @@
           <a 
             [class.active]="item.active" 
             class="menu-item"
+            tabindex="0"
           >
             <span class="menu-icon">{{ item.icon }}</span>
             <span class="menu-label">{{ item.label }}</span>
