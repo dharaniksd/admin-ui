@@ -4,14 +4,61 @@
   </div>
   
   <nav class="sidebar-menu">
-    @for (item of menuItems; track item.label) {
-      <a 
-        [class.active]="item.active" 
-        class="menu-item"
-      >
-        <span class="menu-icon">{{ item.icon }}</span>
-        <span class="menu-label">{{ item.label }}</span>
-      </a>
+    @for (item of menuItems; track item.label; let idx = $index) {
+      <div class="menu-item-wrapper">
+        @if (item.subItems) {
+          <!-- Menu item with submenu -->
+          <a 
+            [class.active]="item.active" 
+            class="menu-item"
+            (click)="toggleSubmenu(item)"
+            [attr.aria-expanded]="!item.collapsed"
+            [attr.aria-controls]="'collapse-' + idx"
+            role="button"
+            tabindex="0"
+            (keydown.enter)="toggleSubmenu(item)"
+            (keydown.space)="$event.preventDefault(); toggleSubmenu(item)"
+          >
+            <span class="menu-icon">{{ item.icon }}</span>
+            <span class="menu-label">{{ item.label }}</span>
+            <span class="collapse-icon" aria-hidden="true">
+              @if (item.collapsed) {
+                ▼
+              } @else {
+                ▲
+              }
+            </span>
+          </a>
+          <!-- Collapsible submenu -->
+          <div 
+            class="submenu-dropdown"
+            [class.show]="!item.collapsed"
+            [id]="'collapse-' + idx"
+          >
+            @for (subItem of item.subItems; track subItem.label) {
+              <a 
+                [class.active]="subItem.active"
+                class="submenu-item"
+                tabindex="0"
+              >
+                <span class="menu-icon">{{ subItem.icon }}</span>
+                <span class="menu-label">{{ subItem.label }}</span>
+              </a>
+            }
+          </div>
+        } @else {
+          <!-- Regular menu item without submenu -->
+          <a 
+            [class.active]="item.active" 
+            class="menu-item"
+            role="button"
+            tabindex="0"
+          >
+            <span class="menu-icon">{{ item.icon }}</span>
+            <span class="menu-label">{{ item.label }}</span>
+          </a>
+        }
+      </div>
     }
   </nav>
 </aside>
